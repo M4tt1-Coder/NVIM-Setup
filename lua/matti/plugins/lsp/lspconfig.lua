@@ -81,6 +81,9 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		-- add configuration for the rust analyzer server
+		-- vim.lsp.config("rust_analyzer", { settings = { ["rust-analyzer"] = { cargo = { features = "ssr" } } } })
+
 		mason_lspconfig.setup({
 			ensure_installed = { "rust_analyzer", "ts_ls", "gopls", "sqlls" },
 			-- default handler for installed servers
@@ -139,6 +142,36 @@ return {
 							},
 							completion = {
 								callSnippet = "Replace",
+							},
+						},
+					},
+				})
+			end,
+			["rust_analyzer"] = function()
+				-- configure rust_analyzer server
+				lspconfig["rust_analyzer"].setup({
+					capabilities = capabilities,
+					settings = {
+						["rust-analyzer"] = {
+							cargo = {
+								features = "all",
+							},
+							checkOnSave = {
+								command = "clippy", -- Use Clippy for linting on save
+							},
+							diagnostics = {
+								enable = true, -- Enable diagnostics,
+								disabled = { "unresolved-proc-macro" }, -- Disable specific diagnostics
+							},
+							procMacro = {
+								enable = true, -- Enable proc macro support
+								ignored = {
+									leptos_macro = {
+										-- optional: --
+										"component",
+										"server",
+									},
+								},
 							},
 						},
 					},

@@ -119,12 +119,21 @@ alias g++='g++ -std=c++23'
 # export PATH="$PATH:/Users/m4tt1/.dotnet/tools"
 export DOTNET_TOOLS="/Users/m4tt1/.dotnet/tools"
 
+export JENV_PATH="$HOME/.jenv/bin"
+eval "$(jenv init -)"
+
 # pnpm
 export PNPM_HOME="/Users/m4tt1/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$DOTNET_TOOLS:$PATH" ;;
+  *) export PATH="$PNPM_HOME:$DOTNET_TOOLS:$JENV_PATH:$PATH" ;;
 esac
 # pnpm end
+
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
 
 export GPG_TTY=$(tty)

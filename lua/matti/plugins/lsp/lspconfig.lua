@@ -68,7 +68,7 @@ return {
 		})
 
 		-- enable inline diagnostics
-		vim.diagnostic.config({ virtual_lines = true })
+		vim.diagnostic.config({ virtual_lines = false, virtual_text = true, signs = true, update_in_insert = true })
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()

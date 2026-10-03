@@ -80,7 +80,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker gitfast npm dotenv golang ssh rust node zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git docker gitfast npm dotenv golang ssh rust composer laravel node zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,17 +118,11 @@ alias g++='g++ -std=c++23'
 
 # export PATH="$PATH:/Users/m4tt1/.dotnet/tools"
 export DOTNET_TOOLS="/Users/m4tt1/.dotnet/tools"
+[[ -d $DOTNET_TOOLS ]] && export PATH="$DOTNET_TOOLS:$PATH"
 
 export JENV_PATH="$HOME/.jenv/bin"
 eval "$(jenv init -)"
-
-# pnpm
-export PNPM_HOME="/Users/m4tt1/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$DOTNET_TOOLS:$JENV_PATH:$PATH" ;;
-esac
-# pnpm end
+[[ -d $JENV_PATH ]] && export PATH="$JENV_PATH:$PATH"
 
 # pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -136,4 +130,19 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 eval "$(pyenv virtualenv-init -)"
 
-export GPG_TTY=$(tty)
+# pnpm
+export PNPM_HOME="/Users/m4tt1/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+# gpg setup
+export GPG_TTY=$TTY
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.local/bin/env"

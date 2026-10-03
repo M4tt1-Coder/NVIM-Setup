@@ -21,6 +21,10 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				rust = { "rustfmt" },
+				blade = { "blade-formatter" },
+				php = { "pint" },
+				go = { "gofmt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

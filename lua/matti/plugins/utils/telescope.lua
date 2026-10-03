@@ -1,7 +1,7 @@
 -- Telescope is a highly extendable fuzzy finder over lists. Items are searched as you type. It is written in Lua and is designed to be fast and efficient. It provides a powerful interface for searching and filtering through various lists, such as files, buffers, and more. It also supports extensions for additional functionality, such as fzf-native for faster searching and todo-comments for finding TODO comments in code. The configuration includes key mappings for common search actions, making it easy to use and navigate through search results. Overall, Telescope is a versatile and powerful tool for enhancing the search capabilities in Neovim, allowing users to quickly find and access files, buffers, and other items with ease.
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	-- branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
